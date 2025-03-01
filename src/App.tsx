@@ -1,11 +1,13 @@
-import React from 'react'
-import { Button } from './components/ui/button'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 const App = () => {
   return (
-    <div>
-      <h1>Hello</h1>
-      <Button variant="outline">Click Me</Button>
-    </div>
+    <Router>
+      <Routes>
+        {/* public routes */}
+
+        {/* private routes */}
+      </Routes>
+    </Router>
   )
 }
 
