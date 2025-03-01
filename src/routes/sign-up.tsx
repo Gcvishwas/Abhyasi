@@ -1,11 +1,10 @@
-import React from 'react'
-
-const SignUp = () => {
+import { SignUp } from "@clerk/clerk-react"
+const SignUpPage = () => {
     return (
         <div>
-            SignUp
+            <SignUp />
         </div>
     )
 }
 
-export default SignUp
+export default SignUpPage
