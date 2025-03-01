@@ -21,6 +21,7 @@ const App = () => {
         </Route>
 
         {/* private routes */}
+
       </Routes>
     </Router>
   )
