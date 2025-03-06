@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import PublicLayout from "@/layouts/public-layout"
 import HomePage from "@/routes/home"
-import AuthenticationLayout from "./layouts/auth-layout"
-import SignInPage from "./routes/sign-in"
-import SignUpPage from "./routes/sign-up"
+import AuthenticationLayout from "@/layouts/auth-layout"
+import SignInPage from "@/routes/sign-in"
+import SignUpPage from "@/routes/sign-up"
+import ProtectRoutes from "@/layouts/protected-routes"
+import MainLayout from "@/layouts/main-layout"
 
 const App = () => {
   return (
@@ -21,7 +23,10 @@ const App = () => {
         </Route>
 
         {/* private routes */}
+        <Route element={<ProtectRoutes><MainLayout /></ProtectRoutes>}>
 
+          {/* add all the private routes */}
+        </Route>
       </Routes>
     </Router>
   )
