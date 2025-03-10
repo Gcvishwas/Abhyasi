@@ -1,10 +1,36 @@
-import React from 'react'
+import { cn } from '@/lib/utils';
+import { useAuth } from '@clerk/clerk-react'
+import Container from '@/components/ui/container'
+import LogoContainer from './logo-container';
+import NavigationRoutes from './navigation-routes';
+
 
 const Header = () => {
+
+    const { userId } = useAuth();
     return (
-        <div>
-            Header
-        </div>
+        <header className={cn("w-full border-b duration-150 transition-all ease-in-out")}>
+
+            <Container>
+
+                <div className='flex items-center gap-4 w-full'>
+
+                    {/* logo section */}
+
+                    <LogoContainer />
+
+                    {/* navigation section */}
+
+                    <nav className={cn("hidden md:flex items-center gap-3")}>
+
+                        <NavigationRoutes />
+                    </nav>
+                    {/* profile section */}
+
+                </div>
+            </Container>
+
+        </header>
     )
 }
 
