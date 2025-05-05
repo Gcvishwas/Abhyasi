@@ -25,11 +25,15 @@ const AuthHandler = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        //storeUserData function => responsible for storing user data in local storage
         const storeUserData = async () => {
             if (isSignedIn && user) {
                 setLoading(true);
                 try {
+                    //getDoc => get document from firestore where document stores user data
+                    //db => firestore database instance
                     const userSnap = await getDoc(doc(db, "users", user.id));
+                    //if user data does not exist in firestore, create a new document with user data
                     if (!userSnap.exists()) {
                         const userData: User =
                         {
@@ -40,6 +44,7 @@ const AuthHandler = () => {
                             createdAt: serverTimestamp(),
                             updatedAt: serverTimestamp(),
                         };
+                        //setDoc => set document in firestore with user data
                         await setDoc(doc(db, "users", user.id), userData);
                     }
                 }
@@ -51,6 +56,7 @@ const AuthHandler = () => {
                 }
             }
         }
+        //storeUserData function is called to store user data in local storage
         storeUserData();
     }, [isSignedIn, user, pathname, navigate])
     if (loading)
