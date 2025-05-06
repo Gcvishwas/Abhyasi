@@ -25,18 +25,21 @@ const AuthHandler = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        //storeUserData function => responsible for storing user data firestore
         const storeUserData = async () => {
             if (isSignedIn && user) {
                 setLoading(true);
+                // console.log("Attempting to store user data:", user.id);  Log the user ID or other relevant info
+
                 try {
-                    //getDoc => get document from firestore where document stores user data
-                    //db => firestore database instance
+                    // Get document from Firestore where user data is stored
                     const userSnap = await getDoc(doc(db, "users", user.id));
-                    //if user data does not exist in firestore, create a new document with user data
+
+                    // Log the result of the getDoc call
+                    // console.log("Firestore snapshot:", userSnap.exists());
+
+                    // If user data doesn't exist in Firestore, create new document
                     if (!userSnap.exists()) {
-                        const userData: User =
-                        {
+                        const userData: User = {
                             id: user.id,
                             name: user.fullName || user.firstName || "Anonymous",
                             email: user.primaryEmailAddress?.emailAddress || "No email",
@@ -44,22 +47,22 @@ const AuthHandler = () => {
                             createdAt: serverTimestamp(),
                             updatedAt: serverTimestamp(),
                         };
-                        //setDoc => set document in firestore with user data
+                        // console.log("Creating new user data in Firestore:", userData);  Log user data
+
                         await setDoc(doc(db, "users", user.id), userData);
+                        // console.log("User data successfully stored in Firestore.");
                     }
-                }
-                catch (error) {
-                    console.error("Error storing user data in local storage:", error);
-                }
-                finally {
+                } catch (error) {
+                    console.error("Error storing user data in Firestore:", error); // Log actual error
+                } finally {
                     setLoading(false);
                 }
             }
         };
-        //storeUserData function is called to store user data in firestore
-        storeUserData();
 
-    }, [isSignedIn, user, pathname, navigate])
+        storeUserData();
+    }, [isSignedIn, user, pathname, navigate]);
+
     if (loading)
         return <LoaderPage />
 
