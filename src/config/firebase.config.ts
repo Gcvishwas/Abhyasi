@@ -13,6 +13,8 @@ const firebaseConfig = {
 };
 
 
+
+
 // The getApps() function returns an array of initialized apps, so we check its length
 // to determine if we need to initialize a new app or use the existing one.
 // If there are no initialized apps, we call initializeApp() to create a new app instance.

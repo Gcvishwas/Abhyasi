@@ -23,7 +23,7 @@ const ToggleContainer = () => {
                     <SheetTitle />
 
                 </SheetHeader>
-                <nav className="flex flex-col mt-4 gap-3">
+                <nav className="flex flex-col mt-4 gap-6">
 
                     <NavigationRoutes isMobile />
                     {/* Checks if user is signed in and if so, show the Take Interview link */}

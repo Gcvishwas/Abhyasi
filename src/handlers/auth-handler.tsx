@@ -25,7 +25,7 @@ const AuthHandler = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        //storeUserData function => responsible for storing user data in local storage
+        //storeUserData function => responsible for storing user data firestore
         const storeUserData = async () => {
             if (isSignedIn && user) {
                 setLoading(true);
@@ -55,9 +55,10 @@ const AuthHandler = () => {
                     setLoading(false);
                 }
             }
-        }
-        //storeUserData function is called to store user data in local storage
+        };
+        //storeUserData function is called to store user data in firestore
         storeUserData();
+
     }, [isSignedIn, user, pathname, navigate])
     if (loading)
         return <LoaderPage />
