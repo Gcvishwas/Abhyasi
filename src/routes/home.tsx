@@ -1,4 +1,8 @@
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import MarqueeImg from "@/components/ui/marquee-img";
+import { Sparkles } from "lucide-react";
+import Marquee from "react-fast-marquee";
 
 const HomePage = () => {
     return (
@@ -45,20 +49,47 @@ const HomePage = () => {
 
                 {/* Image section */}
                 <div className="w-full mt-4 rounded-xl bg-gray-100 h-[420px] drop-shadow-md relative">
-                    <img src="/assets/img/hero.jpg"
+                    <img src="/assets/img/Intervierobot.jpg"
                         alt=""
-                        className="w-full h-full object-cover" />
+                        className="w-full h-full absolute top-1 object-fill" />
 
                     <div className="absolute top-4 left-4 px-4 py-2 rounded-md bg-white/40 text-gray-800 text-sm font-semibold backdrop-blur-md">
                         Abhyasi Interviews &copy;
                     </div>
-                    <div className="hidden md:block absolute bottom-4 right-4 w-80 px-4 py-2 rounded-md bg-white/60 backdrop-blur-md">
+                    <div className="hidden md:block absolute bottom-4 right-4 w-80 px-4 py-2 rounded-md bg-white/60 backdrop-blur-lg">
                         <h2 className="text-neutral-800 font-semibold">Developer</h2>
                         <p className="text-sm text-neutral-600">
                             You can practice coding interviews with AI. It will help you to improve your coding skills and get ready for the real world.
                         </p>
+                        <Button className="mt-3">
+                            Generate <Sparkles />
+                        </Button>
                     </div>
+                </div>
+            </Container>
 
+            {/* marquee section */}
+
+            <div className="w-full mt-8">
+                <Marquee pauseOnHover>
+                    <MarqueeImg img="/assets/img/logo/firebase.png" />
+                    <MarqueeImg img="/assets/img/logo/meet.png" />
+                    <MarqueeImg img="/assets/img/logo/microsoft.png" />
+                    <MarqueeImg className="h-28 xl:h-28" img="/assets/img/logo/react.png" />
+                    <MarqueeImg img="/assets/img/logo/tailwindcss.png" />
+                    <MarqueeImg img="/assets/img/logo/zoom.png" />
+                </Marquee>
+            </div>
+            <Container className="py-8 space-y-8">
+                <h2 className="tracking-wide text-xl text-gray-800 font-semibold">
+                    Start your interview journey with proper insights from AI.
+                </h2>
+                <div className=" grid grid-cols-1 md:grid-cols-5 gap-3">
+                    <p>
+                        This is for image
+                    </p>
+
+                    jlslfj
                 </div>
             </Container>
         </div>
