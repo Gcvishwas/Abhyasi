@@ -3,6 +3,7 @@ import Container from "@/components/ui/container";
 import MarqueeImg from "@/components/ui/marquee-img";
 import { Sparkles } from "lucide-react";
 import Marquee from "react-fast-marquee";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -85,11 +86,26 @@ const HomePage = () => {
                     Start your interview journey with proper insights from AI.
                 </h2>
                 <div className=" grid grid-cols-1 md:grid-cols-5 gap-3">
-                    <p>
-                        This is for image
-                    </p>
+                    <div className="col-span-1 md:col-span-3">
+                        <img src="/assets/img/office.jpg"
+                            alt=""
+                            className="w-full max-h-96 rounded-md object-cover" />
+                    </div>
 
-                    jlslfj
+                    <div className=" col-span-1 md:col-span-2 gap-8 max-h-96 min-h-96 flex flex-col items-center justify-center text-center">
+
+                        <p className="text-center text-muted-foreground">
+                            Transform the way you prepare, gain confidence, and boost your
+                            chances of landing your dream job. Let AI be your edge in
+                            today&apos;s competitive job market.
+                        </p>
+
+                        <Link to={"/generate"} className="w-full">
+                            <Button className="w-3/4">
+                                Generate <Sparkles className="ml-2" />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </Container>
         </div>
