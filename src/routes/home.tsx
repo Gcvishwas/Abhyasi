@@ -54,17 +54,19 @@ const HomePage = () => {
                         alt=""
                         className="w-full h-full absolute top-1 object-fill" />
 
-                    <div className="absolute top-4 left-4 px-4 py-2 rounded-md bg-white/40 text-gray-800 text-sm font-semibold backdrop-blur-md">
+                    <div className="absolute top-4 left-4 px-4 py-2 rounded-md bg-white/40 text-gray-800 text-sm font-semibold backdrop-blur-none">
                         Abhyasi Interviews &copy;
                     </div>
-                    <div className="hidden md:block absolute bottom-4 right-4 w-80 px-4 py-2 rounded-md bg-white/60 backdrop-blur-lg">
+                    <div className="hidden md:block absolute bottom-4 right-4 w-80 px-4 py-2 rounded-md bg-white/70 text-gray-600 text-sm font-serif backdrop-blur-none">
                         <h2 className="text-neutral-800 font-semibold">Developer</h2>
                         <p className="text-sm text-neutral-600">
                             You can practice coding interviews with AI. It will help you to improve your coding skills and get ready for the real world.
                         </p>
-                        <Button className="mt-3">
-                            Generate <Sparkles />
-                        </Button>
+                        <Link to={"/generate"} className="w-full">
+                            <Button className="mt-3">
+                                Generate <Sparkles />
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </Container>
