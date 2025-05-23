@@ -6,7 +6,7 @@ interface HeadingsProps {
   isSubHeading?: boolean;
 }
 
-const headings = ({ title, description, isSubHeading = false, }: HeadingsProps) => {
+const Headings = ({ title, description, isSubHeading = false, }: HeadingsProps) => {
   return (
     <div>
       <h2
@@ -24,4 +24,4 @@ const headings = ({ title, description, isSubHeading = false, }: HeadingsProps) 
   );
 };
 
-export default headings
+export default Headings
