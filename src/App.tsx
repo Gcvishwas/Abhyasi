@@ -6,6 +6,8 @@ import SignInPage from "@/routes/sign-in"
 import SignUpPage from "@/routes/sign-up"
 import ProtectRoutes from "@/layouts/protected-routes"
 import MainLayout from "@/layouts/main-layout"
+import Generate from "./components/ui/Generate"
+import Dashboard from "./routes/dashboard"
 
 const App = () => {
   return (
@@ -26,6 +28,10 @@ const App = () => {
         <Route element={<ProtectRoutes><MainLayout /></ProtectRoutes>}>
 
           {/* add all the private routes */}
+
+          <Route element={<Generate />} path="/generate">
+            <Route index element={<Dashboard />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
