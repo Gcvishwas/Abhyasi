@@ -57,9 +57,9 @@ const HomePage = () => {
                     <div className="absolute top-4 left-4 px-4 py-2 rounded-md bg-white/40 text-gray-800 text-sm font-semibold backdrop-blur-none">
                         Abhyasi Interviews &copy;
                     </div>
-                    <div className="hidden md:block absolute bottom-4 right-4 w-80 px-4 py-2 rounded-md bg-white/70 text-gray-600 text-sm font-serif backdrop-blur-none">
-                        <h2 className="text-neutral-800 font-semibold">Developer</h2>
-                        <p className="text-sm text-neutral-600">
+                    <div className="md:block absolute bottom-4 md:right-4  w-80 px-4 py-2 rounded-md md:bg-white/70 text-gray-600 text-sm font-serif backdrop-blur-none">
+                        <h2 className="hidden md:block text-neutral-800 font-semibold">Developer</h2>
+                        <p className="hidden md:block ktext-sm text-neutral-600">
                             You can practice coding interviews with AI. It will help you to improve your coding skills and get ready for the real world.
                         </p>
                         <Link to={"/generate"} className="w-full">
@@ -87,14 +87,14 @@ const HomePage = () => {
                 <h2 className="tracking-wide text-xl text-gray-800 font-semibold">
                     Start your interview journey with proper insights from AI.
                 </h2>
-                <div className=" grid grid-cols-1 md:grid-cols-5 gap-3">
+                <div className=" grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-3">
                     <div className="col-span-1 md:col-span-3">
                         <img src="/assets/img/office.jpg"
                             alt=""
                             className="w-full max-h-96 rounded-md object-cover" />
                     </div>
 
-                    <div className=" col-span-1 md:col-span-2 gap-8 max-h-96 min-h-96 flex flex-col items-center justify-center text-center">
+                    <div className=" col-span-1 md:col-span-2 gap-8 md:gap-8 max-h-96 md:min-h-96 flex flex-col items-center justify-center text-center">
 
                         <p className="text-center text-muted-foreground">
                             Transform the way you prepare, gain confidence, and boost your
