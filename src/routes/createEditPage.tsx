@@ -1,11 +1,13 @@
-import { db } from "@/config/firebase.config"
-import { Interview } from "@/types"
+import FormMockInterview from "@/components/ui/form-mock-interview"
+import { db } from "@/config/firebase.config" //imports firebase database configuration
+import { Interview } from "@/types" //Imports interview schema type
 import { doc, getDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 const CreateEditPage = () => {
-    const { interviewId } = useParams<{ interviewId: string }>()
+    const { interviewId } = useParams<{ interviewId: string }>()// Extracts interviewId from the URL parameters
+    console.log(interviewId)
     const [interview, setInterview] = useState<Interview | null>(null)
 
     useEffect(() => {
@@ -25,8 +27,9 @@ const CreateEditPage = () => {
     }, [interviewId]);
 
     return (
-        <div>
-            You are on edit page : {interviewId}
+        <div className="my-4 flex-col w-full">
+            {/* initialData={interview} is used to pass the interview data to the FormMockInterview component */}
+            <FormMockInterview initialData={interview} />
         </div>
     )
 }
