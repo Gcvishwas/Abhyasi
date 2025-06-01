@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom"
 
 const CreateEditPage = () => {
     const { interviewId } = useParams<{ interviewId: string }>()// Extracts interviewId from the URL parameters
-    console.log(interviewId)
+    // console.log(interviewId)
     const [interview, setInterview] = useState<Interview | null>(null)
 
     useEffect(() => {
