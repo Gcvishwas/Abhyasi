@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
     CardFooter,
@@ -14,7 +13,7 @@ import {
 import { Badge } from "./badge";
 import { cn } from "@/lib/utils";
 import ToolTipButton from "./tooltip_button";
-import { Eye, Newspaper, Pencil, Sparkles } from "lucide-react";
+import { Eye, Newspaper, Sparkles } from "lucide-react";
 interface InterviewPinProps {
     interview: Interview;
     onMockPage?: boolean;
