@@ -7,6 +7,7 @@ import { db } from "../config/firebase.config";
 import { CustomBreadCrumb } from "../components/custom-breadcrumb";
 import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { Lightbulb } from "lucide-react";
+import QuestionForm from "@/components/question-form";
 
 const MockInterviewPage = () => {
   const { interviewId } = useParams<{ interviewId: string }>();
@@ -83,7 +84,7 @@ const MockInterviewPage = () => {
       </div>
       {interview?.questions && interview?.questions.length > 0 && (
         <div className="mt-4 w-full flex flex-col items-start gap-4">
-        Hello
+        <QuestionForm questions={interview?.questions}/>
         </div>
       )}
     </div>
