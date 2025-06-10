@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
-import Headings from "@/components/ui/headings"
-import InterviewPin from "@/components/ui/interviewpin"
+import Headings from "@/components/headings"
+import InterviewPin from "@/components/interviewpin"
 import { Skeleton } from "@/components/ui/skeleton"
 import { db } from "@/config/firebase.config"
 import { Interview } from "@/types"

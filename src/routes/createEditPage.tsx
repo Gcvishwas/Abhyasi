@@ -1,4 +1,5 @@
-import FormMockInterview from "@/components/ui/form-mock-interview"
+
+import FormMockInterview from "@/components/form-mock-interview"
 import { db } from "@/config/firebase.config" //imports firebase database configuration
 import { Interview } from "@/types" //Imports interview schema type
 import { doc, getDoc } from "firebase/firestore"

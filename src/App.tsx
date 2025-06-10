@@ -6,10 +6,11 @@ import SignInPage from "@/routes/sign-in"
 import SignUpPage from "@/routes/sign-up"
 import ProtectRoutes from "@/layouts/protected-routes"
 import MainLayout from "@/layouts/main-layout"
-import Generate from "./components/ui/generate"
+import Generate from "./components/generate"
 import Dashboard from "./routes/dashboard"
 import CreateEditPage from "./routes/createEditPage"
 import MockLoadPage from "./routes/mock_loadpage"
+import MockInterviewPage from "./routes/mock-interview-page"
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
             <Route index element={<Dashboard />} />
             <Route path=":interviewId" element={<CreateEditPage />} />
             <Route path="interview/:interviewId" element={<MockLoadPage />} />
+            <Route path="interview/:interviewId/start" element={<MockInterviewPage />} />
           </Route>
         </Route>
       </Routes>

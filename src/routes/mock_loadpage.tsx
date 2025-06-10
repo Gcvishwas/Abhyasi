@@ -4,10 +4,10 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import LoaderPage from './loader-page';
-import { CustomBreadCrumb } from '@/components/ui/custom-breadcrumb';
+import { CustomBreadCrumb } from '@/components/custom-breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Lightbulb, Sparkle, WebcamIcon } from 'lucide-react';
-import InterviewPin from '@/components/ui/interviewpin';
+import InterviewPin from '@/components/interviewpin';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Webcam from "react-webcam";
 
@@ -17,9 +17,6 @@ const MockLoadPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isWebCamEnabled, setIsWebCamEnabled] = useState(false);
     const navigate = useNavigate();
-    if (!interviewId) {
-        navigate("/generate", { replace: true })
-    }
 
     // useEffect hook fetches interview data from Firestore when interviewId changes
     useEffect(() => {
@@ -42,10 +39,16 @@ const MockLoadPage = () => {
             }
         }
         fetchInterview();
-    }, [interviewId])
+    }, [interviewId, navigate])
 
     if (isLoading) {
         return <LoaderPage className='w-full h-[70vh]' />
+    }
+    if (!interviewId) {
+        navigate("/generate", { replace: true })
+    }
+    if (!interview) {
+        navigate("/generate", { replace: true })
     }
     return (
         <div className='flex flex-col w-full gap-8 py-5'>
