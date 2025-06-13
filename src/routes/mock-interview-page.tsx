@@ -75,16 +75,21 @@ const MockInterviewPage = () => {
               with ideal answers to help you improve your interview skills.
               <br />
               <br />
-              <span className="font-medium">Note:</span> Your video is{" "}
-              <strong>never recorded</strong>. You can disable your webcam at
-              any time at your own will.
+              <span className="block bg-yellow-100 text-yellow-800 font-semibold px-3 py-2 rounded-md mt-4">
+                Note:
+                <span className="text-yellow-700 font-normal">
+                  If recording doesn't work, please consider switching to
+                  <strong className="text-red-800"> Chrome browser</strong>. You
+                  can disable your webcam at any time at your own will.
+                </span>
+              </span>
             </AlertDescription>
           </div>
         </Alert>
       </div>
       {interview?.questions && interview?.questions.length > 0 && (
         <div className="mt-4 w-full flex flex-col items-start gap-4">
-        <QuestionForm questions={interview?.questions}/>
+          <QuestionForm questions={interview?.questions} />
         </div>
       )}
     </div>
