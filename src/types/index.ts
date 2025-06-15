@@ -20,3 +20,16 @@ export interface Interview {
     createdAt: Timestamp; // timestamp of when the interview was created
     updatedAt: Timestamp; // timestamp of when the interview was last updated
 }
+
+export interface UserAnswer {
+  id: string;
+  mockIdRef: string;
+  question: string;
+  correct_answer: string;
+  user_answer: string;
+  feedback: string;
+  ratings: number;
+  userId: string;
+  createdAt: Timestamp;
+  updateAt: Timestamp;
+}
