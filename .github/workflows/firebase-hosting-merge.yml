@@ -12,7 +12,7 @@ jobs:
       # Install Node.js (optional but recommended to specify version)
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
       
       # Install pnpm globally
       - name: Install pnpm
