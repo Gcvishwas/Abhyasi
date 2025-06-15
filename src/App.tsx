@@ -14,6 +14,7 @@ import MockInterviewPage from "./routes/mock-interview-page";
 import Contact from "./routes/contact";
 import About from "./routes/About";
 import Services from "./routes/Services";
+import Feedback from "./routes/feedback";
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
               path="interview/:interviewId/start"
               element={<MockInterviewPage />}
             />
+            <Route path="feedback/:interviewId" element={<Feedback />} />
           </Route>
         </Route>
       </Routes>
