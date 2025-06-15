@@ -27,6 +27,16 @@ import {
 } from "firebase/firestore";
 import { db } from "@/config/firebase.config";
 import { SaveModal } from "./save-modal";
+// import { record } from "zod";
+
+// Extend the Window interface to include SpeechRecognition types
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
+
 interface RecordAnswerProps {
   question: { question: string; answer: string };
   isWebCam: boolean;
@@ -44,7 +54,6 @@ const RecordAnswer = ({
   setIsWebCam,
 }: RecordAnswerProps) => {
   const {
-    error,
     interimResult,
     isRecording,
     results,
@@ -60,22 +69,40 @@ const RecordAnswer = ({
   const [aiResult, setAiResult] = useState<AIResponse | null>(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const { userId } = useAuth();
   const { interviewId } = useParams();
 
+  // Check for speech recognition support on component mount
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      toast.error(
+        "Your browser does not support Speech Recognition. Please use Chrome for best experience."
+      );
+
+      setIsSpeechSupported(false);
+    }
+  }, []);
+
+  //  Initially isRecording is false and calls all false conditions
+  //  OnClick it calls recordUserAnswer and executes else statement
+  //  else statement continues the recording but also changes state to true hence the CircleStop icons are shown
+  //  since button hasn't been clicked again function doesn't know state has changed to false
+  //  after click only then if condition is executed
   const recordUserAnswer = async () => {
     if (isRecording) {
       stopSpeechToText();
 
       if (userAnswer?.length < 30) {
         toast.error("Error", {
-          description: "Your answer should be more than 30 characters",
+          description: "Your answer is too short",
         });
-
         return;
       }
 
-      //   ai result
+      // aiResult
       const aiResult = await generateResult(
         question.question,
         question.answer,
@@ -118,10 +145,10 @@ const RecordAnswer = ({
     `;
 
     try {
-      const aiResult = await chatSession.sendMessage(prompt);
+      const rawAiResult = await chatSession.sendMessage(prompt);
 
       const parsedResult: AIResponse = cleanJsonResponse(
-        aiResult.response.text()
+        rawAiResult.response.text()
       );
       return parsedResult;
     } catch (error) {
@@ -143,57 +170,51 @@ const RecordAnswer = ({
 
   const saveUserAnswer = async () => {
     setLoading(true);
-
     if (!aiResult) {
       return;
     }
-
     const currentQuestion = question.question;
     try {
-      // query the firbase to check if the user answer already exists for this question
-
+      //query to check if the user has already answered  this question
       const userAnswerQuery = query(
         collection(db, "userAnswers"),
         where("userId", "==", userId),
         where("question", "==", currentQuestion)
       );
-
       const querySnap = await getDocs(userAnswerQuery);
 
-      // if the user already answerd the question dont save it again
+      // If the user has already answered this question, show an error
       if (!querySnap.empty) {
         console.log("Query Snap Size", querySnap.size);
-        toast.info("Already Answered", {
-          description: "You have already answered this question",
-        });
+        toast.error("You have already answered this question.");
         return;
       } else {
-        // save the user answer
-
         await addDoc(collection(db, "userAnswers"), {
           mockIdRef: interviewId,
           question: question.question,
-          correct_ans: question.answer,
-          user_ans: userAnswer,
+          correct_answer: question.answer,
+          user_answer: userAnswer,
+          ratings: aiResult.ratings,
           feedback: aiResult.feedback,
-          rating: aiResult.ratings,
           userId,
           createdAt: serverTimestamp(),
         });
-
-        toast("Saved", { description: "Your answer has been saved.." });
+        toast("Success", {
+          description: "Your answer has been saved successfully!",
+        });
       }
-
       setUserAnswer("");
       stopSpeechToText();
     } catch (error) {
       toast("Error", {
-        description: "An error occurred while generating feedback.",
+        description:
+          "An error occurred while generating feedback due to " +
+          (error as Error).message,
       });
       console.log(error);
     } finally {
       setLoading(false);
-      setOpen(!open);
+      setOpen(!open); // Close the modal after saving
     }
   };
 
@@ -209,6 +230,7 @@ const RecordAnswer = ({
   return (
     <div className="w-full flex flex-col items-center gap-8 mt-4">
       {/* save modal */}
+
       <SaveModal
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -216,7 +238,18 @@ const RecordAnswer = ({
         loading={loading}
       />
 
+      {!isSpeechSupported && (
+        <h1 className="text-lg text-red-500">
+          Your browser does not support Speech Recognition. Please use Chrome
+          for best experience.
+        </h1>
+      )}
       <div className="w-full h-[400px] md:w-96 flex flex-col items-center justify-center border p-4 bg-gray-50 rounded-md">
+        {/* So initially the state is false and WebCamIcon is shown after toggling
+        button the isWebCam is set to true running WebCam and looks for whether
+        the user has granted permission or not and then runs userMedia or
+        userMediaError accordingly */}
+
         {isWebCam ? (
           <Webcam
             onUserMedia={() => setIsWebCam(true)}
@@ -227,8 +260,7 @@ const RecordAnswer = ({
           <WebcamIcon className="min-w-24 min-h-24 text-muted-foreground" />
         )}
       </div>
-
-      <div className="flex itece justify-center gap-3">
+      <div className="flex items-center gap-3">
         <ToolTipButton
           content={isWebCam ? "Turn Off" : "Turn On"}
           icon={
@@ -240,7 +272,6 @@ const RecordAnswer = ({
           }
           onClick={() => setIsWebCam(!isWebCam)}
         />
-
         <ToolTipButton
           content={isRecording ? "Stop Recording" : "Start Recording"}
           icon={
@@ -252,13 +283,11 @@ const RecordAnswer = ({
           }
           onClick={recordUserAnswer}
         />
-
         <ToolTipButton
           content="Record Again"
           icon={<RefreshCw className="min-w-5 min-h-5" />}
           onClick={recordNewAnswer}
         />
-
         <ToolTipButton
           content="Save Result"
           icon={
@@ -277,7 +306,7 @@ const RecordAnswer = ({
         <h2 className="text-lg font-semibold">Your Answer:</h2>
 
         <p className="text-sm mt-2 text-gray-700 whitespace-normal">
-          {userAnswer || "Start recording to see your ansewer here"}
+          {userAnswer || "Start recording to see your answer here"}
         </p>
 
         {interimResult && (
