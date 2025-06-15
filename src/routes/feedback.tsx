@@ -19,11 +19,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useEffect, useMemo, useState } from "react";
-import { replace, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { CircleCheck, Star } from "lucide-react";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import LoaderPage from "./loader-page";
 
 const Feedback = () => {
   const { interviewId } = useParams<{ interviewId: string }>();
@@ -144,65 +145,69 @@ const Feedback = () => {
       {interview && <InterviewPin interview={interview} onMockPage />}
       <Headings title="Interview Feedback" isSubHeading />
 
-      {feedbacks && (
-        <Accordion type="single" collapsible className="space-y-6">
-          {feedbacks.map((feed) => (
-            <AccordionItem
-              key={feed.id}
-              value={feed.id}
-              className="border rounded-lg shadow-md"
-            >
-              <AccordionTrigger
-                onClick={() => setActiveFeed(feed.id)}
-                className={cn(
-                  "px-5 py-3 flex items-center justify-between text-base rounded-t-lg transition-colors hover:no-underline",
-                  activeFeed === feed.id
-                    ? "bg-gradient-to-r from-purple-50 to-blue-50"
-                    : "hover:bg-gray-50"
-                )}
+      {isLoading ? (
+        <LoaderPage className=" w-full h-[70vh] " />
+      ) : (
+        feedbacks && (
+          <Accordion type="single" collapsible className="space-y-6">
+            {feedbacks.map((feed) => (
+              <AccordionItem
+                key={feed.id}
+                value={feed.id}
+                className="border rounded-lg shadow-md"
               >
-                <span>{feed.question}</span>
-              </AccordionTrigger>
+                <AccordionTrigger
+                  onClick={() => setActiveFeed(feed.id)}
+                  className={cn(
+                    "px-5 py-3 flex items-center justify-between text-base rounded-t-lg transition-colors hover:no-underline",
+                    activeFeed === feed.id
+                      ? "bg-gradient-to-r from-purple-50 to-blue-50"
+                      : "hover:bg-gray-50"
+                  )}
+                >
+                  <span>{feed.question}</span>
+                </AccordionTrigger>
 
-              <AccordionContent className="px-5 py-6 bg-white rounded-b-lg space-y-5 shadow-inner">
-                <div className="text-lg font-semibold to-gray-700">
-                  <Star className="inline mr-2 text-yellow-400" />
-                  Rating: {feed.ratings}
-                </div>
+                <AccordionContent className="px-5 py-6 bg-white rounded-b-lg space-y-5 shadow-inner">
+                  <div className="text-lg font-semibold to-gray-700">
+                    <Star className="inline mr-2 text-yellow-400" />
+                    Rating: {feed.ratings}
+                  </div>
 
-                <Card className="border-none space-y-3 p-4 bg-green-50 rounded-lg shadow-md">
-                  <CardTitle className="flex items-center text-lg">
-                    <CircleCheck className="mr-2 text-green-600" />
-                    Expected Answer
-                  </CardTitle>
-                  <CardDescription className="font-medium text-gray-700">
-                    {feed.correct_answer}{" "}
-                  </CardDescription>
-                </Card>
+                  <Card className="border-none space-y-3 p-4 bg-green-50 rounded-lg shadow-md">
+                    <CardTitle className="flex items-center text-lg">
+                      <CircleCheck className="mr-2 text-green-600" />
+                      Expected Answer
+                    </CardTitle>
+                    <CardDescription className="font-medium text-gray-700">
+                      {feed.correct_answer}{" "}
+                    </CardDescription>
+                  </Card>
 
-                <Card className="border-none space-y-3 p-4 bg-yellow-50 rounded-lg shadow-md">
-                  <CardTitle className="flex items-center text-lg">
-                    <CircleCheck className="mr-2 text-yellow-600" />
-                    Your Answer
-                  </CardTitle>
-                  <CardDescription className="font-medium text-gray-700">
-                    {feed.user_answer}{" "}
-                  </CardDescription>
-                </Card>
+                  <Card className="border-none space-y-3 p-4 bg-yellow-50 rounded-lg shadow-md">
+                    <CardTitle className="flex items-center text-lg">
+                      <CircleCheck className="mr-2 text-yellow-600" />
+                      Your Answer
+                    </CardTitle>
+                    <CardDescription className="font-medium text-gray-700">
+                      {feed.user_answer}{" "}
+                    </CardDescription>
+                  </Card>
 
-                <Card className="border-none space-y-3 p-4 bg-red-50 rounded-lg shadow-md">
-                  <CardTitle className="flex items-center text-lg">
-                    <CircleCheck className="mr-2 text-red-600" />
-                    Feedback
-                  </CardTitle>
-                  <CardDescription className="font-medium text-gray-700">
-                    {feed.feedback}{" "}
-                  </CardDescription>
-                </Card>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+                  <Card className="border-none space-y-3 p-4 bg-red-50 rounded-lg shadow-md">
+                    <CardTitle className="flex items-center text-lg">
+                      <CircleCheck className="mr-2 text-red-600" />
+                      Feedback
+                    </CardTitle>
+                    <CardDescription className="font-medium text-gray-700">
+                      {feed.feedback}{" "}
+                    </CardDescription>
+                  </Card>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        )
       )}
     </div>
   );

@@ -19,6 +19,7 @@ const MockInterviewPage = () => {
   useEffect(() => {
     const fetchInterview = async () => {
       if (interviewId) {
+        setIsLoading(true);
         try {
           // Fetch the interview document from Firestore
           const interviewDoc = await getDoc(doc(db, "interviews", interviewId));
@@ -32,6 +33,8 @@ const MockInterviewPage = () => {
         } catch (error) {
           // Log any errors during fetch
           console.log(error);
+        } finally {
+          setIsLoading(false);
         }
       }
     };

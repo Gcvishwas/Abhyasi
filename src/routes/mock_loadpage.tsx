@@ -3,7 +3,6 @@ import { Interview } from "@/types";
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import LoaderPage from "./loader-page";
 import { CustomBreadCrumb } from "@/components/custom-breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, Sparkle, WebcamIcon } from "lucide-react";
@@ -14,7 +13,6 @@ import Webcam from "react-webcam";
 const MockLoadPage = () => {
   const { interviewId } = useParams<{ interviewId: string }>();
   const [interview, setInterview] = useState<Interview | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isWebCamEnabled, setIsWebCamEnabled] = useState(false);
   const navigate = useNavigate();
 
@@ -41,9 +39,6 @@ const MockLoadPage = () => {
     fetchInterview();
   }, [interviewId, navigate]);
 
-  if (isLoading) {
-    return <LoaderPage className="w-full h-[70vh]" />;
-  }
   if (!interviewId) {
     navigate("/generate", { replace: true });
   }
