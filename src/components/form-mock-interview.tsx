@@ -25,6 +25,7 @@ import chatSession from "@/scripts";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   serverTimestamp,
   updateDoc,
@@ -127,6 +128,31 @@ const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
 
     return cleanedResponse;
   };
+  const onDelete = async () => {
+    if (!initialData?.id) return;
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this interview?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      setLoading(true);
+      await deleteDoc(doc(db, "interviews", initialData.id));
+      toast.success("Deleted!", {
+        description: "Mock Interview deleted successfully",
+      });
+      navigate("/generate", { replace: true });
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+      toast.error("Error", {
+        description: "Failed to delete the interview. Try again later.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const onSubmit = async (data: FormData) => {
     try {
       setLoading(true);
@@ -190,9 +216,14 @@ const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
       />
       <div className="w-full flex-col space-y-4">
         <Headings title={title} isSubHeading />
-        {!initialData && (
-          <Button size={"icon"} variant={"ghost"}>
-            <Trash2 className="min-w-4 min-h-4 text-red-500"></Trash2>
+        {initialData && (
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={onDelete}
+            disabled={loading}
+          >
+            <Trash2 className="min-w-4 min-h-4 text-red-500" />
           </Button>
         )}
       </div>
