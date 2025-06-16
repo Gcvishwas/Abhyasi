@@ -199,9 +199,9 @@ const FormMockInterview = ({ initialData }: FormMockInterviewProps) => {
 
       <Separator className="my-4"></Separator>
 
-      <div className="my-6">
+      {/* <div className="my-6">
         <Button onClick={() => alert("Button Clicked!")}></Button>
-      </div>
+      </div> */}
 
       {/* spread operators expands an iterable (like an array) into more elements. */}
       {/* spread operators are used to pass the form methods to the FormProvider component, which allows us to use the form methods in the child components. */}
