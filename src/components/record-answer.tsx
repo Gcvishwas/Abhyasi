@@ -20,6 +20,7 @@ import chatSession from "@/scripts";
 import {
   addDoc,
   collection,
+  deleteDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -168,6 +169,48 @@ const RecordAnswer = ({
     startSpeechToText();
   };
 
+  /*If we want to delete previous answers
+  const saveUserAnswer = async () => {
+    const currentQuestion = question.question;
+    setLoading(true);
+    if (!aiResult) {
+      return;
+    }
+    try {
+      // 1. Query previous answers
+      const previousQuery = query(
+        collection(db, "userAnswers"),
+        where("userId", "==", userId),
+        where("question", "==", currentQuestion)
+      );
+
+      const previousAnswers = await getDocs(previousQuery);
+
+      // 2. Delete them all
+      const deletePromises = previousAnswers.docs.map((doc) =>
+        deleteDoc(doc.ref)
+      );
+      await Promise.all(deletePromises);
+
+      // 3. Add the new answer
+      await addDoc(collection(db, "userAnswers"), {
+        mockIdRef: interviewId,
+        question: question.question,
+        correct_answer: question.answer,
+        user_answer: userAnswer,
+        ratings: aiResult.ratings,
+        feedback: aiResult.feedback,
+        userId,
+        createdAt: serverTimestamp(),
+      });
+
+      toast.success("Your new answer has been saved!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to save answer");
+    }
+  };*/
+
   const saveUserAnswer = async () => {
     setLoading(true);
     if (!aiResult) {
@@ -176,33 +219,33 @@ const RecordAnswer = ({
     const currentQuestion = question.question;
     try {
       //query to check if the user has already answered  this question
-      const userAnswerQuery = query(
-        collection(db, "userAnswers"),
-        where("userId", "==", userId),
-        where("question", "==", currentQuestion)
-      );
-      const querySnap = await getDocs(userAnswerQuery);
+      // const userAnswerQuery = query(
+      //   collection(db, "userAnswers"),
+      //   where("userId", "==", userId),
+      //   where("question", "==", currentQuestion)
+      // );
+      // const querySnap = await getDocs(userAnswerQuery);
 
       // If the user has already answered this question, show an error
-      if (!querySnap.empty) {
-        console.log("Query Snap Size", querySnap.size);
-        toast.error("You have already answered this question.");
-        return;
-      } else {
-        await addDoc(collection(db, "userAnswers"), {
-          mockIdRef: interviewId,
-          question: question.question,
-          correct_answer: question.answer,
-          user_answer: userAnswer,
-          ratings: aiResult.ratings,
-          feedback: aiResult.feedback,
-          userId,
-          createdAt: serverTimestamp(),
-        });
-        toast("Success", {
-          description: "Your answer has been saved successfully!",
-        });
-      }
+      // if (!querySnap.empty) {
+      //   console.log("Query Snap Size", querySnap.size);
+      //   toast.error("You have already answered this question.");
+      //   return;
+      // } else
+      await addDoc(collection(db, "userAnswers"), {
+        mockIdRef: interviewId,
+        question: question.question,
+        correct_answer: question.answer,
+        user_answer: userAnswer,
+        ratings: aiResult.ratings,
+        feedback: aiResult.feedback,
+        userId,
+        createdAt: serverTimestamp(),
+      });
+      toast("Success", {
+        description: "Your answer has been saved successfully!",
+      });
+
       setUserAnswer("");
       stopSpeechToText();
     } catch (error) {
