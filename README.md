@@ -60,7 +60,7 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
 
 ---
 
-### Additional Packages
+## Additional Packages
 
 - `firebase` - Firebase SDK
 - `react-icons` - Icon library
@@ -99,7 +99,7 @@ cd Abhyasi
 pnpm install
 ```
 
-💻 Backend Setup
+### 💻 Backend Setup
 
 1. Obtain a Gemini API key from Google AI Studio
 
@@ -134,7 +134,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
 
-### 📂 Project Structure
+## 📂 Project Structure
 
 ```bash
 Abhyasi/
@@ -158,7 +158,7 @@ Abhyasi/
 └── vite.config.ts # Vite configuration
 ```
 
-### 🤝 Contributing
+## 🤝 Contributing
 
 1. Fork the project
 
@@ -173,7 +173,7 @@ Abhyasi/
 ## 📜 License<br>
 Distributed under the <a href="https://mit-license.org/">MIT</a> License. See LICENSE for more information.
 
-👤 Authors <br>
+##👤 Authors <br>
 <a href="https://github.com/Gcvishwas">Gcvishwas</a>– Creator and Maintainer
 
 # React + TypeScript + Vite
