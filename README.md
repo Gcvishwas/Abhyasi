@@ -82,7 +82,7 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
 git clone https://github.com/Gcvishwas/Abhyasi.git
 cd Abhyasi
 pnpm install
-
+```
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
