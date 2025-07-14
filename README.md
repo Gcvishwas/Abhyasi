@@ -78,7 +78,7 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
 
 ### ⚙️ Installation
 
-```bash```
+```bash
 git clone https://github.com/Gcvishwas/Abhyasi.git
 cd Abhyasi
 pnpm install
