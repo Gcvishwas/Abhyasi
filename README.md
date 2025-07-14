@@ -28,7 +28,61 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
 - 🏷️ Support for multiple interview domains
 - 📈 Progress tracking over time with Firebase persistence
 - 🎨 Modern, responsive UI with Tailwind CSS
-  
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- ⚡ Vite (Build Tool)
+- 🟦 React.js with TypeScript
+- 🎨 Tailwind CSS
+- 🧩 ShadCN UI Components (Radix UI-based components)
+- 🛣️ React Router (v6)
+- 🔑 Clerk Authentication
+- 🔥 Firebase Realtime Database
+
+---
+- **APIs & Logic**  
+  - Gemini API (for AI responses)
+  - Firebase (chat history & storage)
+---
+
+### Additional Packages
+- `firebase` - Firebase SDK
+- `react-icons` - Icon library
+- `react-webcam` - For video recording
+- `react-audio-recorder` - For voice recording
+- `zod` - Schema validation
+- `react-hook-form` – form handling
+- `tailwind-variants` – utility-based Tailwind variants
+---
+
+ **Tooling**  
+  - `pnpm` – blazing fast package manager  
+  - TypeScript + ESLint + Prettier
+
+---
+
+## 🚀 Getting Started
+
+### 📋 Prerequisites
+
+- Node.js ≥ 16  
+- `pnpm` globally installed  
+- Gemini API Key  
+- Firebase Project & Config  
+- Clerk Project (frontend + backend keys)
+
+---
+
+### ⚙️ Installation
+
+```bash```
+git clone https://github.com/Gcvishwas/Abhyasi.git
+cd Abhyasi
+pnpm install
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
