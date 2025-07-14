@@ -134,7 +134,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
 
-📂 Project Structure
+### 📂 Project Structure
 
 ```bash
 Abhyasi/
@@ -158,7 +158,7 @@ Abhyasi/
 └── vite.config.ts # Vite configuration
 ```
 
-🤝 Contributing
+### 🤝 Contributing
 
 1. Fork the project
 
@@ -170,8 +170,8 @@ Abhyasi/
 
 5. Open a Pull Request
 
-📜 License
-Distributed under the MIT License. See LICENSE for more information.
+## 📜 License<br>
+Distributed under the <a href="https://mit-license.org/">MIT</a> License. See LICENSE for more information.
 
 👤 Authors <br>
 <a href="https://github.com/Gcvishwas">Gcvishwas</a>– Creator and Maintainer
