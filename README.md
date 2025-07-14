@@ -2,6 +2,33 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br>
 Abhyasi is an AI-powered interviewer built with modern web technologies. It uses the **Gemini API** to simulate real interview experiences—generating intelligent questions, model answers, providing feedback, and scoring performance. The app integrates **Clerk** for authentication and **Firebase** to persist chat data.
 ---
+## 📑 Table of Contents
+
+- [✨ Features](#-features)  
+- [🛠️ Technologies Used](#️-technologies-used)  
+- [🚀 Getting Started](#-getting-started)  
+  - [📋 Prerequisites](#-prerequisites)  
+  - [⚙️ Installation](#-installation)  
+  - [💻 Backend Setup](#-backend-setup)  
+  - [🌐 Frontend Setup](#-frontend-setup)  
+  - [🔐 Environment Variables](#-environment-variables)  
+- [📂 Project Structure](#-project-structure)  
+- [🤝 Contributing](#-contributing)  
+- [📜 License](#-license)  
+- [👤 Authors](#-authors)
+
+---
+## ✨ Features
+🎯 AI-generated interview questions using Gemini API
+- 🔥 Real-time data storage with Firebase Database
+- 🎙️ Voice recording and transcription capabilities
+- 📊 Performance analysis and ratings stored in Firebase
+- 📝 Detailed feedback on answers
+- 🔐 User authentication with Clerk
+- 🏷️ Support for multiple interview domains
+- 📈 Progress tracking over time with Firebase persistence
+- 🎨 Modern, responsive UI with Tailwind CSS
+  
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
