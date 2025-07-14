@@ -1,6 +1,9 @@
 # Abhyasi - AI Interviewer 🤖🎤
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br>
+[![React](https://img.shields.io/badge/React-18.x-blue?logo=react)](https://reactjs.org)<br>
+[![Firebase](https://img.shields.io/badge/Firebase-RealtimeDB-orange?logo=firebase)](https://firebase.google.com)<br>
+[![Clerk](https://img.shields.io/badge/Clerk-Authentication-purple)](https://clerk.dev)<br>
 Abhyasi is an AI-powered interviewer built with modern web technologies. It uses the **Gemini API** to simulate real interview experiences—generating intelligent questions, model answers, providing feedback, and scoring performance. The app integrates **Clerk** for authentication and **Firebase** to persist chat data.
 
 ---
@@ -171,7 +174,7 @@ Abhyasi/
 Distributed under the MIT License. See LICENSE for more information.
 
 👤 Authors <br>
-Gcvishwas – Creator and Maintainer
+<a href="https://github.com/Gcvishwas">Gcvishwas</a>– Creator and Maintainer
 
 # React + TypeScript + Vite
 
