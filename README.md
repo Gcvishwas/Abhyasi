@@ -173,7 +173,7 @@ Abhyasi/
 ## 📜 License<br>
 Distributed under the <a href="https://mit-license.org/">MIT</a> License. See LICENSE for more information.
 
-##👤 Authors <br>
+###👤 Authors <br>
 <a href="https://github.com/Gcvishwas">Gcvishwas</a>– Creator and Maintainer
 
 # React + TypeScript + Vite
