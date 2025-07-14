@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React](https://img.shields.io/badge/React-18.x-blue?logo=react)](https://reactjs.org)
 [![Firebase](https://img.shields.io/badge/Firebase-RealtimeDB-orange?logo=firebase)](https://firebase.google.com)
-[![Clerk](https://img.shields.io/badge/Clerk-Authentication-purple)](https://clerk.dev)
+[![Clerk](https://img.shields.io/badge/Clerk-Authentication-purple)](https://clerk.dev)<br>
 Abhyasi is an AI-powered interviewer built with modern web technologies. It uses the **Gemini API** to simulate real interview experiences—generating intelligent questions, model answers, providing feedback, and scoring performance. The app integrates **Clerk** for authentication and **Firebase** to persist chat data.
 
 ---
