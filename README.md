@@ -89,7 +89,7 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
 - Firebase Project & Config
 - Clerk Project (frontend + backend keys)
 
----
+
 
 ### ⚙️ Installation
 
