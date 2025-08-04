@@ -17,7 +17,6 @@ Abhyasi is an AI-powered interviewer built with modern web technologies. It uses
   - [📋 Prerequisites](#-prerequisites)
   - [⚙️ Installation](#-installation)
   - [💻 Backend Setup](#-backend-setup)
-  - [🌐 Frontend Setup](#-frontend-setup)
   - [🔐 Environment Variables](#-environment-variables)
 - [📂 Project Structure](#-project-structure)
 - [🤝 Contributing](#-contributing)
